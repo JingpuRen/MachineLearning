@@ -69,6 +69,6 @@ def datingClassTest ():
     errorRate = errorCount/float(testCount) # 注意是拿错误数据的个数去除以测试集的个数，并不是除以整个数据集的个数
     return errorRate
   
-  if __name__ == "__main__" :
+if __name__ == "__main__" :
     pass
   
