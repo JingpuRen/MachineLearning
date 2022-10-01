@@ -51,8 +51,24 @@ def classify (inX,datingDataMat,labelsList,k) :
     # 从0开始遍历sortedDistance中的前k最小的标签，并将其频数记录下来
     labelGet = labelsList[sortedDistance[i]] # 比如说当前是第0个距离最近的点，那么我们就需要把0个频率最近的点的索引取出来，然后找到这个索引对应的分类
     classCount[labelGet] = classCount.get(labelGet,0) + 1 # 记录其发生次数，如果这个标签之前遇到过，那么就加一；如果是第一次遇见，那么就返回0
+  sortedClassCount = sorted(classCount.items(),key=operator.itemgetter(1),reverse=True) # True表示降序排序
+  return sortedClassCount[0][0] # 返回出现频率最高的元组的键值，也就是返回频率最高的标签
+
+# 测试分类器性能
+def datingClassTest ():
+    testRate = 0.1 # 表示数据集中的10%将作为训练集
+    errorCount = 0.0 # 表示分类错误的样本数
+    datingDataMat,lalesList = file2Matrix(filename)
+    newDataMat = normData(datingDataMat) # 将数据集进行归一化处理
+    testCount = int(testRate*datingDataMat.shape[0]) # 计算测试集的数据个数，即行数
+    for i in range(testCount) :
+        classReturn = classify0(newDataMat[i,:],newDataMat[testCount:datingDataMat.shape[0],:],datingLabelsList[testCount:datingDataMat.shape[0]],3)
+        print("came back with : %d,the real answer is : %d" % (classReturn,datingLabelsList1[i]))
+        if(classReturn != datingLabelsList[i]) :
+            errorCount += 1.0
+    errorRate = errorCount/float(testCount) # 注意是拿错误数据的个数去除以测试集的个数，并不是除以整个数据集的个数
+    return errorRate
   
-  
-  
-  
+  if __name__ == "__main__" :
+    pass
   
