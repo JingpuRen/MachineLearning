@@ -6,6 +6,7 @@ case:《Machine Learning In Action》
 
 imort pandas as pd
 imprt numpy as np
+import operator
 
 # 将文件中的数据转化成矩阵类型
 def file2Matrix (filename):
@@ -36,7 +37,7 @@ def normData (dataSetMat) :
   return newDataMat # 返回归一化后的数据矩阵
 
 # KNN算法分类
-def classify (inX,datingDataMat,labelsList,k) :
+def classify0 (inX,datingDataMat,labelsList,k) :
   # inX表示的是我们将要测试或者说将要预测的数据集,datingDataMat表示的是我们用来作为基准的并且已经知道分类的结果的训练集,labelsList表示的是训练集所对应的分类标签列表,K表示前几个
   # 值得注意的是1.inX和datingDataMat都是归一化之后的矩阵，万万不要传进来原矩阵，会很大程度上受量纲的影响!!! 2.测试集或者预测集inX必须是一行一行的传进来的，不能一下子传进来整个矩阵
   m = datignDataMat.shape[0] # shape[0]是np的矩阵结构所具有的的属性，返回行数
